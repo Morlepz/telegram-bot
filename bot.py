@@ -44,19 +44,20 @@ Siqnal yoxdur. Sistem var."""
 
 # MUTE FUNCTION
 async def mute_user(update: Update, context: ContextTypes.DEFAULT_TYPE, user_id: int):
-    until_date = datetime.now(timezone.utc) + timedelta(minutes=10)
-
-    await context.bot.restrict_chat_member(
-        chat_id=update.effective_chat.id,
-        user_id=user_id,
-        permissions=ChatPermissions(
-            can_send_messages=False,
-            can_send_other_messages=False,
-            can_add_web_page_previews=False
-        ),
-        until_date=until_date
-    )
-
+    try:
+        until_date = datetime.now(timezone.utc) + timedelta(minutes=10)
+        await context.bot.restrict_chat_member(
+            chat_id=update.effective_chat.id,
+            user_id=user_id,
+            permissions=ChatPermissions(
+                can_send_messages=False,
+                can_send_other_messages=False,
+                can_add_web_page_previews=False
+            ),
+            until_date=until_date
+        )
+    except Exception:
+        pass  # silently ignore if user is admin/owner
 
 # MEDIA DELETE (PHOTO + VIDEO + STICKER + GIF)
 async def delete_media(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -89,6 +90,9 @@ async def delete_media(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # TEXT ARGO FILTER
 async def filter_bad_words(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not update.message or not update.message.text:
+        return
+    # rest of the function stays the same
 
     user = update.effective_user
     chat_id = update.effective_chat.id
