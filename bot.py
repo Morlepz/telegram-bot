@@ -9,7 +9,7 @@ import sys
 from datetime import datetime, timedelta
 from datetime import timezone
 import os
-
+import asyncio
 sys.stdout.reconfigure(encoding='utf-8')
 
 TOKEN = os.getenv("TOKEN")
@@ -137,4 +137,10 @@ app.add_handler(
 )
 
 print("Bot işləyir...")
-app.run_polling()
+asyncio.run(app.run_polling())
+
+
+
+
+
+
