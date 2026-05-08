@@ -8,10 +8,11 @@ from telegram import Update, ChatPermissions
 import sys
 from datetime import datetime, timedelta
 from datetime import timezone
+import os
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-TOKEN = "8745590275:AAHhj39b5TLsJTE2EAMsgxAbS6w0kWte1bo"
+TOKEN = os.getenv("TOKEN")
 
 bad_words = ["sik", "sikim", "peyser", "peysər", "cindir", "cındır", "pesi", "qehbe",
              "qəhbə", "orospu", "oç", "gijdıllaq", "gijdillax", "gidjillax", "gijdılax", "gijdilax", "siktir", "sikdir", "osdur", "balası", "skdr", "götverən", "qancix", "yarrak", "yarak", "taşak", "am", "amina koyim", "ananı", "skm", "anneni", "amına"]
