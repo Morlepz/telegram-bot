@@ -141,7 +141,7 @@ app.add_handler(
 )
 
 print("Bot işləyir...")
-asyncio.run(app.run_polling())
+app.run_polling()
 
 
 
